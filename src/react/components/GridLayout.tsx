@@ -263,6 +263,7 @@ function synchronizeLayoutWithChildren(
           minH: dataGrid.minH,
           maxH: dataGrid.maxH,
           static: dataGrid.static,
+          anchor: dataGrid.anchor,
           isDraggable: dataGrid.isDraggable,
           isResizable: dataGrid.isResizable,
           resizeHandles: dataGrid.resizeHandles,
@@ -555,7 +556,7 @@ export function GridLayout(props: GridLayoutProps): ReactElement {
       onDragProp(newLayout, oldDragItem, l, placeholder, data.e, data.node);
 
       // Use compactor.compact() - it handles allowOverlap internally (#2213)
-      setLayout(compactor.compact(newLayout, cols));
+      setLayout(compactor.compact(newLayout, cols, { movedItemId: i }));
       setActiveDrag(placeholder);
     },
     [preventCollision, compactType, cols, allowOverlap, compactor, onDragProp]
@@ -583,7 +584,9 @@ export function GridLayout(props: GridLayoutProps): ReactElement {
       );
 
       // Use compactor.compact() - it handles allowOverlap internally (#2213)
-      const finalLayout = compactor.compact(newLayout, cols);
+      const finalLayout = compactor.compact(newLayout, cols, {
+        movedItemId: i
+      });
 
       onDragStopProp(finalLayout, oldDragItem, l, null, data.e, data.node);
 
@@ -720,7 +723,7 @@ export function GridLayout(props: GridLayoutProps): ReactElement {
       );
 
       // Use compactor.compact() - it handles allowOverlap internally (#2213)
-      setLayout(compactor.compact(finalLayout, cols));
+      setLayout(compactor.compact(finalLayout, cols, { movedItemId: i }));
       setActiveDrag(placeholder);
     },
     [preventCollision, compactType, cols, allowOverlap, compactor, onResizeProp]
@@ -733,7 +736,9 @@ export function GridLayout(props: GridLayoutProps): ReactElement {
       const l = getLayoutItem(currentLayout, i);
 
       // Use compactor.compact() - it handles allowOverlap internally (#2213)
-      const finalLayout = compactor.compact(currentLayout, cols);
+      const finalLayout = compactor.compact(currentLayout, cols, {
+        movedItemId: i
+      });
 
       onResizeStopProp(
         finalLayout,
@@ -1025,6 +1030,7 @@ export function GridLayout(props: GridLayoutProps): ReactElement {
           maxH={l.maxH}
           maxW={l.maxW}
           static={l.static}
+          anchor={l.anchor}
           droppingPosition={isDroppingItem ? droppingPosition : undefined}
           resizeHandles={resizeHandlesOptions}
           resizeHandle={resizeHandleElement}

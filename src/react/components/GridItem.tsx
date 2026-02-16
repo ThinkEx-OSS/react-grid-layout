@@ -110,6 +110,8 @@ export interface GridItemProps {
   isBounded: boolean;
   /** Whether the item is static (can't be moved/resized) */
   static?: boolean;
+  /** Whether the item is anchor (fixed when others drag, movable when self or another anchor drags) */
+  anchor?: boolean;
   /** Use CSS transforms instead of top/left */
   useCSSTransforms?: boolean;
   /** Use percentage widths for server rendering */
@@ -204,6 +206,7 @@ export function GridItem(props: GridItemProps): ReactElement {
     isResizable,
     isBounded,
     static: isStatic,
+    anchor: isAnchor = false,
     useCSSTransforms = true,
     usePercentages = false,
     transformScale = 1,
@@ -822,6 +825,7 @@ export function GridItem(props: GridItemProps): ReactElement {
     ref: elementRef,
     className: clsx("react-grid-item", childClassName, className, {
       static: isStatic,
+      anchor: isAnchor,
       resizing,
       "react-draggable": isDraggable,
       "react-draggable-dragging": dragging,

@@ -3,6 +3,7 @@
 exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] = `
 [
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "0",
@@ -21,6 +22,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "1",
@@ -39,6 +41,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "2",
@@ -57,6 +60,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 7,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "3",
@@ -75,6 +79,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 22,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "4",
@@ -93,6 +98,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "5",
@@ -111,6 +117,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 34,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "6",
@@ -129,6 +136,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "7",
@@ -147,6 +155,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "8",
@@ -165,6 +174,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "9",
@@ -183,6 +193,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "10",
@@ -201,6 +212,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 11,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "11",
@@ -219,6 +231,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 30,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "12",
@@ -237,6 +250,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 18,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "13",
@@ -255,6 +269,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 42,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "14",
@@ -273,6 +288,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "15",
@@ -291,6 +307,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "16",
@@ -309,6 +326,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "17",
@@ -327,6 +345,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 22,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "18",
@@ -345,6 +364,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "19",
@@ -363,6 +383,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 38,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "20",
@@ -381,6 +402,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 22,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "21",
@@ -399,6 +421,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "22",
@@ -417,6 +440,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "23",
@@ -435,6 +459,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "24",
@@ -453,6 +478,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 11,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "25",
@@ -471,6 +497,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 28,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "26",
@@ -489,6 +516,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 18,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "27",
@@ -507,6 +535,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 44,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "28",
@@ -525,6 +554,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 1,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "29",
@@ -543,6 +573,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "30",
@@ -561,6 +592,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "31",
@@ -579,6 +611,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 24,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "32",
@@ -597,6 +630,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "33",
@@ -615,6 +649,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 36,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "34",
@@ -633,6 +668,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 22,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "35",
@@ -651,6 +687,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "36",
@@ -669,6 +706,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 5,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "37",
@@ -687,6 +725,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "38",
@@ -705,6 +744,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "39",
@@ -723,6 +763,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 32,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "40",
@@ -741,6 +782,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "41",
@@ -759,6 +801,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 44,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "42",
@@ -777,6 +820,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 1,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "43",
@@ -795,6 +839,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "44",
@@ -813,6 +858,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 9,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "45",
@@ -831,6 +877,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 24,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "46",
@@ -849,6 +896,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "47",
@@ -867,6 +915,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 40,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "48",
@@ -885,6 +934,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "49",
@@ -903,6 +953,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "50",
@@ -921,6 +972,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 5,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "51",
@@ -939,6 +991,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 18,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "52",
@@ -957,6 +1010,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "53",
@@ -975,6 +1029,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 30,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "54",
@@ -993,6 +1048,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "55",
@@ -1011,6 +1067,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 46,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "56",
@@ -1029,6 +1086,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "57",
@@ -1047,6 +1105,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "58",
@@ -1065,6 +1124,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 9,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "59",
@@ -1083,6 +1143,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 26,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "60",
@@ -1101,6 +1162,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "61",
@@ -1119,6 +1181,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 38,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "62",
@@ -1137,6 +1200,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "63",
@@ -1155,6 +1219,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "64",
@@ -1173,6 +1238,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "65",
@@ -1191,6 +1257,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 18,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "66",
@@ -1209,6 +1276,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 13,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "67",
@@ -1227,6 +1295,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 34,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "68",
@@ -1245,6 +1314,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 20,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "69",
@@ -1263,6 +1333,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 46,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "70",
@@ -1281,6 +1352,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "71",
@@ -1299,6 +1371,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "72",
@@ -1317,6 +1390,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "73",
@@ -1335,6 +1409,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 26,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "74",
@@ -1353,6 +1428,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "75",
@@ -1371,6 +1447,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 42,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "76",
@@ -1389,6 +1466,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 24,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "77",
@@ -1407,6 +1485,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "78",
@@ -1425,6 +1504,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "79",
@@ -1443,6 +1523,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 20,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "80",
@@ -1461,6 +1542,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 13,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "81",
@@ -1479,6 +1561,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 32,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "82",
@@ -1497,6 +1580,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 20,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "83",
@@ -1515,6 +1599,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 48,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "84",
@@ -1533,6 +1618,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 3,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "85",
@@ -1551,6 +1637,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "86",
@@ -1569,6 +1656,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "87",
@@ -1587,6 +1675,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 28,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "88",
@@ -1605,6 +1694,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "89",
@@ -1623,6 +1713,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 40,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "90",
@@ -1641,6 +1732,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 24,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "91",
@@ -1659,6 +1751,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "92",
@@ -1677,6 +1770,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 7,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "93",
@@ -1695,6 +1789,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 20,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "94",
@@ -1713,6 +1808,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "95",
@@ -1731,6 +1827,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 36,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "96",
@@ -1749,6 +1846,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "97",
@@ -1767,6 +1865,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 48,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "98",
@@ -1785,6 +1884,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
     "y": 3,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "99",
@@ -1808,6 +1908,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (100 items) 1`] =
 exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 items) 1`] = `
 [
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "0",
@@ -1826,6 +1927,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "1",
@@ -1844,6 +1946,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "2",
@@ -1862,6 +1965,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "3",
@@ -1880,6 +1984,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "4",
@@ -1898,6 +2003,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "5",
@@ -1916,6 +2022,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "6",
@@ -1934,6 +2041,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "7",
@@ -1952,6 +2060,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "8",
@@ -1970,6 +2079,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 1,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "9",
@@ -1988,6 +2098,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "10",
@@ -2006,6 +2117,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "11",
@@ -2024,6 +2136,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "12",
@@ -2042,6 +2155,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 5,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "13",
@@ -2060,6 +2174,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "14",
@@ -2078,6 +2193,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "15",
@@ -2096,6 +2212,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "16",
@@ -2114,6 +2231,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "17",
@@ -2132,6 +2250,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "18",
@@ -2150,6 +2269,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "19",
@@ -2168,6 +2288,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "20",
@@ -2186,6 +2307,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "21",
@@ -2204,6 +2326,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "22",
@@ -2222,6 +2345,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 13,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "23",
@@ -2240,6 +2364,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "24",
@@ -2258,6 +2383,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 3,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "25",
@@ -2276,6 +2402,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "26",
@@ -2294,6 +2421,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "27",
@@ -2312,6 +2440,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "28",
@@ -2330,6 +2459,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "29",
@@ -2348,6 +2478,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "30",
@@ -2366,6 +2497,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "31",
@@ -2384,6 +2516,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "32",
@@ -2402,6 +2535,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "33",
@@ -2420,6 +2554,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "34",
@@ -2438,6 +2573,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "35",
@@ -2456,6 +2592,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "36",
@@ -2474,6 +2611,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 1,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "37",
@@ -2492,6 +2630,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "38",
@@ -2510,6 +2649,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "39",
@@ -2528,6 +2668,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "40",
@@ -2546,6 +2687,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 5,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "41",
@@ -2564,6 +2706,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "42",
@@ -2582,6 +2725,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "43",
@@ -2600,6 +2744,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "44",
@@ -2618,6 +2763,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "45",
@@ -2636,6 +2782,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "46",
@@ -2654,6 +2801,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "47",
@@ -2672,6 +2820,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "48",
@@ -2690,6 +2839,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "49",
@@ -2708,6 +2858,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "50",
@@ -2726,6 +2877,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "51",
@@ -2744,6 +2896,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "52",
@@ -2762,6 +2915,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 3,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "53",
@@ -2780,6 +2934,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "54",
@@ -2798,6 +2953,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "55",
@@ -2816,6 +2972,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 25,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "56",
@@ -2834,6 +2991,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "57",
@@ -2852,6 +3010,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "58",
@@ -2870,6 +3029,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "59",
@@ -2888,6 +3048,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "60",
@@ -2906,6 +3067,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "61",
@@ -2924,6 +3086,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "62",
@@ -2942,6 +3105,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "63",
@@ -2960,6 +3124,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "64",
@@ -2978,6 +3143,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 1,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "65",
@@ -2996,6 +3162,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "66",
@@ -3014,6 +3181,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "67",
@@ -3032,6 +3200,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "68",
@@ -3050,6 +3219,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 5,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "69",
@@ -3068,6 +3238,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "70",
@@ -3086,6 +3257,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "71",
@@ -3104,6 +3276,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 19,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "72",
@@ -3122,6 +3295,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "73",
@@ -3140,6 +3314,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "74",
@@ -3158,6 +3333,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "75",
@@ -3176,6 +3352,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "76",
@@ -3194,6 +3371,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "77",
@@ -3212,6 +3390,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 2,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "78",
@@ -3230,6 +3409,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 14,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "79",
@@ -3248,6 +3428,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "80",
@@ -3266,6 +3447,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 3,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "81",
@@ -3284,6 +3466,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 8,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "82",
@@ -3302,6 +3485,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 16,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "83",
@@ -3320,6 +3504,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 25,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "84",
@@ -3338,6 +3523,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 0,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "85",
@@ -3356,6 +3542,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "86",
@@ -3374,6 +3561,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "87",
@@ -3392,6 +3580,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 21,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "88",
@@ -3410,6 +3599,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 4,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "89",
@@ -3428,6 +3618,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 10,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "90",
@@ -3446,6 +3637,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "91",
@@ -3464,6 +3656,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 17,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "92",
@@ -3482,6 +3675,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 1,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "93",
@@ -3500,6 +3694,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 6,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "94",
@@ -3518,6 +3713,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 15,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "95",
@@ -3536,6 +3732,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 23,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "96",
@@ -3554,6 +3751,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 5,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "97",
@@ -3572,6 +3770,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 12,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 1,
     "i": "98",
@@ -3590,6 +3789,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "y": 13,
   },
   {
+    "anchor": false,
     "constraints": undefined,
     "h": 2,
     "i": "99",

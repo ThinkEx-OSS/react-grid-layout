@@ -94,6 +94,8 @@ export {
   bottom,
   getLayoutItem,
   getStatics,
+  getAnchors,
+  getFixedItems,
 
   // Cloning
   cloneLayoutItem,

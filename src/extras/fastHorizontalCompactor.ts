@@ -23,8 +23,14 @@
  * ```
  */
 
-import type { Compactor, Layout, LayoutItem, Mutable } from "../core/types.js";
-import { cloneLayout } from "../core/layout.js";
+import type {
+  CompactContext,
+  Compactor,
+  Layout,
+  LayoutItem,
+  Mutable
+} from "../core/types.js";
+import { cloneLayout, getFixedItems } from "../core/layout.js";
 
 /**
  * Ensure the tide array has enough rows.
@@ -50,25 +56,24 @@ function getMaxTideForItem(tide: number[], y: number, h: number): number {
 }
 
 /**
- * Check if an item can be placed at a given position without colliding with static items.
+ * Check if an item can be placed at a given position without colliding with fixed items.
  */
 function canPlaceAt(
   item: LayoutItem,
   x: number,
   y: number,
-  staticItems: LayoutItem[],
+  fixedItems: LayoutItem[],
   cols: number
 ): boolean {
   // Check grid bounds
   if (x + item.w > cols) return false;
 
-  // Check static collisions
-  for (const staticItem of staticItems) {
+  for (const fixedItem of fixedItems) {
     if (
-      x < staticItem.x + staticItem.w &&
-      x + item.w > staticItem.x &&
-      y < staticItem.y + staticItem.h &&
-      y + item.h > staticItem.y
+      x < fixedItem.x + fixedItem.w &&
+      x + item.w > fixedItem.x &&
+      y < fixedItem.y + fixedItem.h &&
+      y + item.h > fixedItem.y
     ) {
       return false;
     }
@@ -91,21 +96,26 @@ function canPlaceAt(
  * @param layout - The layout to compact (will be modified in place)
  * @param cols - Number of columns in the grid
  * @param allowOverlap - Whether to allow overlapping items
+ * @param fixedItems - Items that don't move (statics + anchors when fixed)
  */
 function compactHorizontalFast(
   layout: LayoutItem[],
   cols: number,
-  allowOverlap: boolean
+  allowOverlap: boolean,
+  fixedItems: LayoutItem[]
 ): void {
   const numItems = layout.length;
   if (numItems === 0) return;
+  const fixedIds = new Set(fixedItems.map(f => f.i));
 
   // Sort items by column then row (same as standard horizontal compactor)
-  // Static items are sorted first at each position to reduce collision checks
   layout.sort((a, b) => {
     if (a.x !== b.x) return a.x - b.x;
     if (a.y !== b.y) return a.y - b.y;
-    if (a.static !== b.static) return a.static ? -1 : 1;
+    const aFixed = fixedIds.has(a.i);
+    const bFixed = fixedIds.has(b.i);
+    if (aFixed && !bFixed) return -1;
+    if (!aFixed && bFixed) return 1;
     return 0;
   });
 
@@ -120,11 +130,7 @@ function compactHorizontalFast(
   }
 
   // "Sweeping tide" - tracks the rightmost blocked column per row
-  // Pre-allocate based on max row extent to avoid repeated reallocations
   const tide: number[] = new Array(maxRow).fill(0);
-
-  // Collect static items for collision checking
-  const staticItems = layout.filter(item => item.static);
 
   // Safety limit for row wrapping (prevents infinite loops)
   // Use a limit relative to layout size (at least 10_000, or 100x the number of items)
@@ -133,8 +139,8 @@ function compactHorizontalFast(
   for (let i = 0; i < numItems; i++) {
     const item = layout[i] as Mutable<LayoutItem>;
 
-    if (item.static) {
-      // Static items don't move; they become part of the tide
+    if (fixedIds.has(item.i)) {
+      // Fixed items don't move; they become part of the tide
       ensureTideRows(tide, item.y + item.h);
       const t = item.x + item.w;
       for (let y = item.y; y < item.y + item.h; y++) {
@@ -145,7 +151,7 @@ function compactHorizontalFast(
       continue;
     }
 
-    // For non-static items, find the best position
+    // For non-fixed items, find the best position
     let targetY = item.y;
     let targetX = 0;
     let placed = false;
@@ -162,38 +168,34 @@ function compactHorizontalFast(
 
       // Check if item fits within grid bounds
       if (targetX + item.w <= cols) {
-        // Check for static item collisions
         if (
           allowOverlap ||
-          canPlaceAt(item, targetX, targetY, staticItems, cols)
+          canPlaceAt(item, targetX, targetY, fixedItems, cols)
         ) {
           placed = true;
         } else {
-          // Find the rightmost static collision and try past it
-          let maxStaticRight = targetX;
+          let maxFixedRight = targetX;
           let foundCollision = false;
-          for (const staticItem of staticItems) {
+          for (const fixedItem of fixedItems) {
             if (
-              targetX < staticItem.x + staticItem.w &&
-              targetX + item.w > staticItem.x &&
-              targetY < staticItem.y + staticItem.h &&
-              targetY + item.h > staticItem.y
+              targetX < fixedItem.x + fixedItem.w &&
+              targetX + item.w > fixedItem.x &&
+              targetY < fixedItem.y + fixedItem.h &&
+              targetY + item.h > fixedItem.y
             ) {
-              maxStaticRight = Math.max(
-                maxStaticRight,
-                staticItem.x + staticItem.w
+              maxFixedRight = Math.max(
+                maxFixedRight,
+                fixedItem.x + fixedItem.w
               );
               foundCollision = true;
             }
           }
           if (foundCollision) {
-            targetX = maxStaticRight;
+            targetX = maxFixedRight;
           }
 
-          // After moving past static, check if we still fit
           if (foundCollision && targetX + item.w <= cols) {
-            // Verify no more collisions at new position
-            if (canPlaceAt(item, targetX, targetY, staticItems, cols)) {
+            if (canPlaceAt(item, targetX, targetY, fixedItems, cols)) {
               placed = true;
             } else {
               // Can't fit in this row, wrap to next
@@ -256,10 +258,10 @@ export const fastHorizontalCompactor: Compactor = {
   type: "horizontal",
   allowOverlap: false,
 
-  compact(layout: Layout, cols: number): Layout {
-    // Clone the layout since we modify in place
+  compact(layout: Layout, cols: number, context?: CompactContext): Layout {
+    const fixedItems = getFixedItems(layout, context);
     const out = cloneLayout(layout) as LayoutItem[];
-    compactHorizontalFast(out, cols, false);
+    compactHorizontalFast(out, cols, false, fixedItems);
     return out;
   }
 };
@@ -273,9 +275,10 @@ export const fastHorizontalOverlapCompactor: Compactor = {
   ...fastHorizontalCompactor,
   allowOverlap: true,
 
-  compact(layout: Layout, cols: number): Layout {
+  compact(layout: Layout, cols: number, context?: CompactContext): Layout {
+    const fixedItems = getFixedItems(layout, context);
     const out = cloneLayout(layout) as LayoutItem[];
-    compactHorizontalFast(out, cols, true);
+    compactHorizontalFast(out, cols, true, fixedItems);
     return out;
   }
 };

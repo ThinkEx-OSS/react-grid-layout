@@ -23,8 +23,14 @@
  * ```
  */
 
-import type { Compactor, Layout, LayoutItem, Mutable } from "../core/types.js";
-import { cloneLayout } from "../core/layout.js";
+import type {
+  CompactContext,
+  Compactor,
+  Layout,
+  LayoutItem,
+  Mutable
+} from "../core/types.js";
+import { cloneLayout, getFixedItems } from "../core/layout.js";
 
 /**
  * Check if two layout items collide (overlap).
@@ -53,34 +59,36 @@ function collides(l1: LayoutItem, l2: LayoutItem): boolean {
  * @param layout - The layout to compact (will be modified in place)
  * @param cols - Number of columns in the grid
  * @param allowOverlap - Whether to allow overlapping items
+ * @param fixedItems - Items that don't move (statics + anchors when fixed)
  */
 function compactVerticalFast(
   layout: LayoutItem[],
   cols: number,
-  allowOverlap: boolean
+  allowOverlap: boolean,
+  fixedItems: LayoutItem[]
 ): void {
   const numItems = layout.length;
+  const fixedIds = new Set(fixedItems.map(f => f.i));
 
   // Sort items by position: top-to-bottom, left-to-right
-  // Static items are sorted first at each position to reduce collision checks
+  // Fixed items (static + anchor when fixed) sorted first to reduce collision checks
   layout.sort((a, b) => {
     if (a.y < b.y) return -1;
     if (a.y > b.y) return 1;
     if (a.x < b.x) return -1;
     if (a.x > b.x) return 1;
-    // Static items sorted first to reduce collision checks
-    if (a.static && !b.static) return -1;
-    if (!a.static && b.static) return 1;
+    const aFixed = fixedIds.has(a.i);
+    const bFixed = fixedIds.has(b.i);
+    if (aFixed && !bFixed) return -1;
+    if (!aFixed && bFixed) return 1;
     return 0;
   });
 
   // "Rising tide" - tracks the highest blocked row per column
   const tide: number[] = new Array(cols).fill(0);
 
-  // Collect static items for collision checking
-  const staticItems = layout.filter(item => item.static);
-  const numStatics = staticItems.length;
-  let staticOffset = 0;
+  const numFixed = fixedItems.length;
+  let fixedOffset = 0;
 
   for (let i = 0; i < numItems; i++) {
     const item = layout[i] as Mutable<LayoutItem>;
@@ -91,10 +99,9 @@ function compactVerticalFast(
       x2 = cols;
     }
 
-    if (item.static) {
-      // Static items don't move; they become part of the tide
-      // and don't need collision checks against themselves
-      ++staticOffset;
+    if (fixedIds.has(item.i)) {
+      // Fixed items don't move; they become part of the tide
+      ++fixedOffset;
     } else {
       // Find the minimum gap between the item and the tide
       let minGap = Infinity;
@@ -111,25 +118,22 @@ function compactVerticalFast(
         item.y -= minGap;
       }
 
-      // Handle collisions with static items
-      for (let j = staticOffset; !allowOverlap && j < numStatics; ++j) {
-        const staticItem = staticItems[j];
-        if (staticItem === undefined) continue;
+      // Handle collisions with fixed items
+      for (let j = fixedOffset; !allowOverlap && j < numFixed; ++j) {
+        const fixedItem = fixedItems[j];
+        if (fixedItem === undefined) continue;
 
-        // Early exit: if static item is below current item, no more collisions possible
-        if (staticItem.y >= item.y + item.h) {
+        // Early exit: if fixed item is below current item, no more collisions possible
+        if (fixedItem.y >= item.y + item.h) {
           break;
         }
 
-        if (collides(item, staticItem)) {
-          // Move current item below the static item
-          item.y = staticItem.y + staticItem.h;
+        if (collides(item, fixedItem)) {
+          // Move current item below the fixed item
+          item.y = fixedItem.y + fixedItem.h;
 
-          if (j > staticOffset) {
-            // Item was moved; need to recheck with earlier static items
-            // Note: j = staticOffset means after ++j we start at staticOffset + 1,
-            // but staticItems[staticOffset] was already checked or is above us
-            j = staticOffset;
+          if (j > fixedOffset) {
+            j = fixedOffset;
           }
         }
       }
@@ -163,10 +167,19 @@ export const fastVerticalCompactor: Compactor = {
   type: "vertical",
   allowOverlap: false,
 
-  compact(layout: Layout, cols: number): Layout {
-    // Clone the layout since we modify in place
+  compact(layout: Layout, cols: number, context?: CompactContext): Layout {
+    const fixedItems = getFixedItems(layout, context);
+    const fixedIds = new Set(fixedItems.map(f => f.i));
+    const sorted = [...layout].sort((a, b) => {
+      if (a.y < b.y) return -1;
+      if (a.y > b.y) return 1;
+      if (a.x < b.x) return -1;
+      if (a.x > b.x) return 1;
+      return 0;
+    });
+    const fixedItemsInOrder = sorted.filter(l => fixedIds.has(l.i));
     const out = cloneLayout(layout) as LayoutItem[];
-    compactVerticalFast(out, cols, false);
+    compactVerticalFast(out, cols, false, fixedItemsInOrder);
     return out;
   }
 };
@@ -180,9 +193,19 @@ export const fastVerticalOverlapCompactor: Compactor = {
   ...fastVerticalCompactor,
   allowOverlap: true,
 
-  compact(layout: Layout, cols: number): Layout {
+  compact(layout: Layout, cols: number, context?: CompactContext): Layout {
+    const fixedItems = getFixedItems(layout, context);
+    const fixedIds = new Set(fixedItems.map(f => f.i));
+    const sorted = [...layout].sort((a, b) => {
+      if (a.y < b.y) return -1;
+      if (a.y > b.y) return 1;
+      if (a.x < b.x) return -1;
+      if (a.x > b.x) return 1;
+      return 0;
+    });
+    const fixedItemsInOrder = sorted.filter(l => fixedIds.has(l.i));
     const out = cloneLayout(layout) as LayoutItem[];
-    compactVerticalFast(out, cols, true);
+    compactVerticalFast(out, cols, true, fixedItemsInOrder);
     return out;
   }
 };

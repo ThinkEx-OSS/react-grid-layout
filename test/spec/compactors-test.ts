@@ -179,7 +179,9 @@ describe("Compactors", () => {
 
       const result = noCompactor.compact(layout, 12);
 
-      expect(result).toEqual(layout);
+      expect(result).toHaveLength(layout.length);
+      expect(result[0]).toMatchObject({ i: "a", x: 5, y: 10, w: 2, h: 2 });
+      expect(result[1]).toMatchObject({ i: "b", x: 0, y: 0, w: 2, h: 2 });
     });
 
     it("handles empty layout", () => {

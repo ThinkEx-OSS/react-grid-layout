@@ -26,8 +26,14 @@
  * ```
  */
 
-import type { Compactor, Layout, LayoutItem, Mutable } from "../core/types.js";
-import { cloneLayout, cloneLayoutItem } from "../core/layout.js";
+import type {
+  CompactContext,
+  Compactor,
+  Layout,
+  LayoutItem,
+  Mutable
+} from "../core/types.js";
+import { cloneLayout, cloneLayoutItem, getFixedItems } from "../core/layout.js";
 
 /**
  * Sort items in wrap order: left-to-right, top-to-bottom.
@@ -55,21 +61,28 @@ function fromWrapPosition(pos: number, cols: number): { x: number; y: number } {
 /**
  * Compact items in wrap order, filling gaps from left-to-right, top-to-bottom.
  * All items are assumed to be 1x1 for wrap mode to work correctly.
+ *
+ * @param layout - Layout to compact
+ * @param cols - Number of columns
+ * @param fixedItems - Items that don't move (statics + anchors when fixed)
  */
-function compactWrap(layout: Layout, cols: number): LayoutItem[] {
+function compactWrap(
+  layout: Layout,
+  cols: number,
+  fixedItems: LayoutItem[]
+): LayoutItem[] {
   if (layout.length === 0) return [];
 
   const sorted = sortByWrapOrder(layout);
   const out: LayoutItem[] = new Array(layout.length);
-  const statics = sorted.filter(item => item.static);
+  const fixedIds = new Set(fixedItems.map(f => f.i));
 
-  // Track which positions are occupied by static items
-  const staticPositions = new Set<number>();
-  for (const s of statics) {
-    // For static items, mark all cells they occupy
+  // Track which positions are occupied by fixed items
+  const fixedPositions = new Set<number>();
+  for (const s of fixedItems) {
     for (let dy = 0; dy < s.h; dy++) {
       for (let dx = 0; dx < s.w; dx++) {
-        staticPositions.add((s.y + dy) * cols + (s.x + dx));
+        fixedPositions.add((s.y + dy) * cols + (s.x + dx));
       }
     }
   }
@@ -82,28 +95,22 @@ function compactWrap(layout: Layout, cols: number): LayoutItem[] {
 
     const l = cloneLayoutItem(sortedItem);
 
-    if (l.static) {
-      // Static items stay in place
+    if (fixedIds.has(l.i)) {
       const originalIndex = layout.indexOf(sortedItem);
       out[originalIndex] = l;
-      l.moved = false;
+      (l as Mutable<LayoutItem>).moved = false;
       continue;
     }
 
-    // Find next available position that doesn't conflict with statics
-    while (staticPositions.has(nextPos)) {
+    while (fixedPositions.has(nextPos)) {
       nextPos++;
     }
 
-    // For items larger than 1x1, we need to check if the full item fits
     const { x, y } = fromWrapPosition(nextPos, cols);
 
-    // Check if item would overflow the row
     if (x + l.w > cols) {
-      // Move to start of next row
       nextPos = (y + 1) * cols;
-      // Skip any static positions on the new row
-      while (staticPositions.has(nextPos)) {
+      while (fixedPositions.has(nextPos)) {
         nextPos++;
       }
     }
@@ -112,12 +119,11 @@ function compactWrap(layout: Layout, cols: number): LayoutItem[] {
     (l as Mutable<LayoutItem>).x = newCoords.x;
     (l as Mutable<LayoutItem>).y = newCoords.y;
 
-    // Advance past this item
     nextPos += l.w;
 
     const originalIndex = layout.indexOf(sortedItem);
     out[originalIndex] = l;
-    l.moved = false;
+    (l as Mutable<LayoutItem>).moved = false;
   }
 
   return out;
@@ -137,8 +143,9 @@ export const wrapCompactor: Compactor = {
   type: "wrap",
   allowOverlap: false,
 
-  compact(layout: Layout, cols: number): Layout {
-    return compactWrap(layout, cols);
+  compact(layout: Layout, cols: number, context?: CompactContext): Layout {
+    const fixedItems = getFixedItems(layout, context);
+    return compactWrap(layout, cols, fixedItems);
   }
 };
 
@@ -149,8 +156,7 @@ export const wrapOverlapCompactor: Compactor = {
   ...wrapCompactor,
   allowOverlap: true,
 
-  compact(layout: Layout, _cols: number): Layout {
-    // With overlap allowed, just clone without compacting
+  compact(layout: Layout, _cols: number, _context?: CompactContext): Layout {
     return cloneLayout(layout);
   }
 };

@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-dist/
+# dist/ - NOT ignored; required for git-based installs (yarn add git+https://...)
+# Users installing from the git repo URL need pre-built dist files since
+# prepublishOnly only runs on npm publish, not on git installs.
 npm-debug.log
 build/
 .idea

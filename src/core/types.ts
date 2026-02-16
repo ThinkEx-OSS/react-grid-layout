@@ -69,6 +69,13 @@ export interface LayoutItem {
   static?: boolean;
 
   /**
+   * If true, item stays fixed when normal items are dragged (like static),
+   * but can move when dragged/resized itself or when another anchor is moved.
+   * If both static and anchor are set, anchor is ignored.
+   */
+  anchor?: boolean;
+
+  /**
    * If false, item cannot be dragged (but may still be resizable).
    * Overrides grid-level isDraggable for this item.
    */
@@ -290,9 +297,19 @@ export interface Compactor {
    *
    * @param layout - The layout to compact
    * @param cols - Number of columns in the grid
+   * @param context - Optional context (e.g. movedItemId) for anchor-aware compaction
    * @returns The compacted layout
    */
-  compact(layout: Layout, cols: number): Layout;
+  compact(layout: Layout, cols: number, context?: CompactContext): Layout;
+}
+
+/**
+ * Context passed to compaction for anchor-aware behavior.
+ * When movedItemId is set and refers to an anchor, other anchors can shift.
+ */
+export interface CompactContext {
+  /** When set, anchors are compactable if this item is an anchor; otherwise anchors act as fixed obstacles */
+  movedItemId?: string;
 }
 
 /**

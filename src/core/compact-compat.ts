@@ -32,23 +32,22 @@ function resolveCompactionCollision(
   item: LayoutItem,
   moveToCoord: number,
   axis: "x" | "y",
-  hasStatics?: boolean
+  hasStatics?: boolean,
+  skipAnchors?: boolean
 ): void {
   const sizeProp = heightWidth[axis];
   (item as Mutable<LayoutItem>)[axis] += 1;
 
   const itemIndex = layout.findIndex(l => l.i === item.i);
 
-  // Calculate hasStatics once if not provided
   const layoutHasStatics = hasStatics ?? getStatics(layout).length > 0;
 
-  // Go through each item we collide with
   for (let i = itemIndex + 1; i < layout.length; i++) {
     const otherItem = layout[i];
     if (otherItem === undefined) continue;
 
-    // Ignore static items
     if (otherItem.static) continue;
+    if (skipAnchors && otherItem.anchor) continue;
 
     // Optimization: we can break early if we know we're past this element
     // We can do this because it's a sorted layout - but only if there are
@@ -61,7 +60,8 @@ function resolveCompactionCollision(
         otherItem,
         moveToCoord + item[sizeProp],
         axis,
-        layoutHasStatics
+        layoutHasStatics,
+        skipAnchors
       );
     }
   }
@@ -81,7 +81,8 @@ function compactItemInternal(
   cols: number,
   fullLayout: Layout,
   allowOverlap: boolean | undefined,
-  b: number | undefined
+  b: number | undefined,
+  skipAnchors?: boolean
 ): LayoutItem {
   const compactV = compactType === "vertical";
   const compactH = compactType === "horizontal";
@@ -117,9 +118,23 @@ function compactItemInternal(
     !allowOverlap
   ) {
     if (compactH) {
-      resolveCompactionCollision(fullLayout, l, collision.x + collision.w, "x");
+      resolveCompactionCollision(
+        fullLayout,
+        l,
+        collision.x + collision.w,
+        "x",
+        undefined,
+        skipAnchors
+      );
     } else {
-      resolveCompactionCollision(fullLayout, l, collision.y + collision.h, "y");
+      resolveCompactionCollision(
+        fullLayout,
+        l,
+        collision.y + collision.h,
+        "y",
+        undefined,
+        skipAnchors
+      );
     }
 
     // Since we can't grow without bounds horizontally, if we've overflown,
@@ -154,21 +169,22 @@ function compactItemInternal(
  * @param compactType - 'vertical', 'horizontal', or null
  * @param cols - Number of columns in the grid
  * @param allowOverlap - If true, overlapping is allowed
+ * @param context - Optional context for anchor-aware compaction
  * @returns Compacted layout
  */
 export function compact(
   layout: Layout,
   compactType: CompactType,
   cols: number,
-  allowOverlap?: boolean
+  allowOverlap?: boolean,
+  context?: CompactContext
 ): LayoutItem[] {
-  // Statics go in the compareWith array right away so items flow around them.
-  const compareWith = getStatics(layout);
-  // We keep track of the bottom position.
+  const fixedItems = getFixedItems(layout, context);
+  const fixedIds = new Set(fixedItems.map(f => f.i));
+  const skipAnchors = fixedItems.some(f => f.anchor);
+  const compareWith: LayoutItem[] = [...fixedItems];
   let b = bottom(compareWith);
-  // We go through the items by row and column (or col and row for horizontal).
   const sorted = sortLayoutItems(layout, compactType);
-  // Holding for new items.
   const out: LayoutItem[] = new Array(layout.length);
 
   for (let i = 0; i < sorted.length; i++) {
@@ -177,8 +193,7 @@ export function compact(
 
     let l = cloneLayoutItem(sortedItem);
 
-    // Don't move static elements
-    if (!l.static) {
+    if (!fixedIds.has(l.i)) {
       l = compactItemInternal(
         compareWith,
         l,
@@ -186,7 +201,8 @@ export function compact(
         cols,
         sorted,
         allowOverlap,
-        b
+        b,
+        skipAnchors
       );
       b = Math.max(b, l.y + l.h);
 
@@ -218,7 +234,8 @@ export function compactItem(
   cols: number,
   fullLayout: Layout,
   allowOverlap: boolean | undefined,
-  maxY: number | undefined
+  maxY: number | undefined,
+  skipAnchors?: boolean
 ): LayoutItem {
   return compactItemInternal(
     compareWith,
@@ -227,6 +244,7 @@ export function compactItem(
     cols,
     fullLayout,
     allowOverlap,
-    maxY
+    maxY,
+    skipAnchors
   );
 }

@@ -301,7 +301,9 @@ export function useGridLayout(
       );
 
       // Compact and finalize - use compactor.compact() (#2213)
-      const compacted = compactor.compact(newLayout, cols);
+      const compacted = compactor.compact(newLayout, cols, {
+        movedItemId: itemId
+      });
 
       isDraggingRef.current = false;
 
@@ -354,7 +356,9 @@ export function useGridLayout(
 
       // Correct bounds and compact - use compactor.compact() (#2213)
       const corrected = correctBounds(newLayout, { cols });
-      const compacted = compactor.compact(corrected, cols);
+      const compacted = compactor.compact(corrected, cols, {
+        movedItemId: itemId
+      });
 
       setLayoutState(compacted);
     },
@@ -388,7 +392,9 @@ export function useGridLayout(
         // Add dropping item to layout - use compactor.compact() (#2213)
         const newLayout = [...layout, droppingItem];
         const corrected = correctBounds(newLayout, { cols });
-        const compacted = compactor.compact(corrected, cols);
+        const compacted = compactor.compact(corrected, cols, {
+          movedItemId: droppingItem.i
+        });
         setLayoutState(compacted);
       }
 
@@ -427,7 +433,9 @@ export function useGridLayout(
 
       // Use compactor.compact() (#2213)
       const corrected = correctBounds(newLayout, { cols });
-      const compacted = compactor.compact(corrected, cols);
+      const compacted = compactor.compact(corrected, cols, {
+        movedItemId: droppingItem.i
+      });
       setLayoutState(compacted);
 
       setDropState({

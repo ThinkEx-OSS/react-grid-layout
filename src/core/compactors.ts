@@ -6,6 +6,7 @@
  */
 
 import type {
+  CompactContext,
   Compactor,
   CompactType,
   Layout,
@@ -14,7 +15,13 @@ import type {
 } from "./types.js";
 import { getFirstCollision } from "./collision.js";
 import { sortLayoutItemsByRowCol, sortLayoutItemsByColRow } from "./sort.js";
-import { bottom, cloneLayoutItem, getStatics, cloneLayout } from "./layout.js";
+import {
+  bottom,
+  cloneLayoutItem,
+  cloneLayout,
+  getFixedItems,
+  getStatics
+} from "./layout.js";
 import { collides } from "./collision.js";
 
 // ============================================================================
@@ -179,11 +186,13 @@ export const verticalCompactor: Compactor = {
   type: "vertical",
   allowOverlap: false,
 
-  compact(layout: Layout, _cols: number): Layout {
-    const compareWith = getStatics(layout);
+  compact(layout: Layout, _cols: number, context?: CompactContext): Layout {
+    const fixedItems = getFixedItems(layout, context);
+    const compareWith: LayoutItem[] = [...fixedItems];
     let maxY = bottom(compareWith);
     const sorted = sortLayoutItemsByRowCol(layout);
     const out: LayoutItem[] = new Array(layout.length);
+    const fixedIds = new Set(fixedItems.map(f => f.i));
 
     for (let i = 0; i < sorted.length; i++) {
       const sortedItem = sorted[i];
@@ -191,7 +200,7 @@ export const verticalCompactor: Compactor = {
 
       let l = cloneLayoutItem(sortedItem);
 
-      if (!l.static) {
+      if (!fixedIds.has(l.i)) {
         l = compactItemVertical(compareWith, l, sorted, maxY);
         maxY = Math.max(maxY, l.y + l.h);
         compareWith.push(l);
@@ -199,7 +208,7 @@ export const verticalCompactor: Compactor = {
 
       const originalIndex = layout.indexOf(sortedItem);
       out[originalIndex] = l;
-      l.moved = false;
+      (l as Mutable<LayoutItem>).moved = false;
     }
 
     return out;
@@ -220,10 +229,12 @@ export const horizontalCompactor: Compactor = {
   type: "horizontal",
   allowOverlap: false,
 
-  compact(layout: Layout, cols: number): Layout {
-    const compareWith = getStatics(layout);
+  compact(layout: Layout, cols: number, context?: CompactContext): Layout {
+    const fixedItems = getFixedItems(layout, context);
+    const compareWith: LayoutItem[] = [...fixedItems];
     const sorted = sortLayoutItemsByColRow(layout);
     const out: LayoutItem[] = new Array(layout.length);
+    const fixedIds = new Set(fixedItems.map(f => f.i));
 
     for (let i = 0; i < sorted.length; i++) {
       const sortedItem = sorted[i];
@@ -231,14 +242,14 @@ export const horizontalCompactor: Compactor = {
 
       let l = cloneLayoutItem(sortedItem);
 
-      if (!l.static) {
+      if (!fixedIds.has(l.i)) {
         l = compactItemHorizontal(compareWith, l, cols, sorted);
         compareWith.push(l);
       }
 
       const originalIndex = layout.indexOf(sortedItem);
       out[originalIndex] = l;
-      l.moved = false;
+      (l as Mutable<LayoutItem>).moved = false;
     }
 
     return out;
@@ -259,7 +270,7 @@ export const noCompactor: Compactor = {
   type: null,
   allowOverlap: false,
 
-  compact(layout: Layout, _cols: number): Layout {
+  compact(layout: Layout, _cols: number, _context?: CompactContext): Layout {
     // No compaction - just clone to maintain immutability
     return cloneLayout(layout);
   }
@@ -279,7 +290,7 @@ export const verticalOverlapCompactor: Compactor = {
   ...verticalCompactor,
   allowOverlap: true,
 
-  compact(layout: Layout, _cols: number): Layout {
+  compact(layout: Layout, _cols: number, _context?: CompactContext): Layout {
     // With overlap allowed, just clone without moving
     return cloneLayout(layout);
   }
@@ -292,7 +303,7 @@ export const horizontalOverlapCompactor: Compactor = {
   ...horizontalCompactor,
   allowOverlap: true,
 
-  compact(layout: Layout, _cols: number): Layout {
+  compact(layout: Layout, _cols: number, _context?: CompactContext): Layout {
     return cloneLayout(layout);
   }
 };

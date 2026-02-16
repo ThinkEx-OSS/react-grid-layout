@@ -5,7 +5,13 @@
  * All functions treat layouts as immutable - they return new arrays/objects.
  */
 
-import type { CompactType, Layout, LayoutItem, Mutable } from "./types.js";
+import type {
+  CompactContext,
+  CompactType,
+  Layout,
+  LayoutItem,
+  Mutable
+} from "./types.js";
 import { getAllCollisions, getFirstCollision } from "./collision.js";
 import { sortLayoutItems } from "./sort.js";
 
@@ -65,6 +71,50 @@ export function getStatics(layout: Layout): LayoutItem[] {
   return layout.filter((l): l is LayoutItem => l.static === true);
 }
 
+/**
+ * Get all anchor items from the layout.
+ *
+ * Anchor items stay fixed when normal items are dragged but can move
+ * when dragged themselves or when another anchor is moved.
+ *
+ * @param layout - Layout to filter
+ * @returns Array of anchor layout items (excluding static items - mutual exclusivity)
+ */
+export function getAnchors(layout: Layout): LayoutItem[] {
+  return layout.filter(
+    (l): l is LayoutItem => l.anchor === true && l.static !== true
+  );
+}
+
+/**
+ * Get items that should not move during compaction (fixed obstacles).
+ *
+ * Statics are always fixed. Anchors are fixed when no movedItemId is provided
+ * or when the moved item is not an anchor.
+ *
+ * @param layout - Layout to query
+ * @param context - Optional compaction context
+ * @returns Array of fixed layout items
+ */
+export function getFixedItems(
+  layout: Layout,
+  context?: CompactContext
+): LayoutItem[] {
+  const statics = getStatics(layout);
+  const anchors = getAnchors(layout);
+
+  const movedItem = context?.movedItemId
+    ? getLayoutItem(layout, context.movedItemId)
+    : undefined;
+  const anchorsFixed =
+    !context?.movedItemId || movedItem?.anchor !== true;
+
+  if (!anchorsFixed) {
+    return statics;
+  }
+  return [...statics, ...anchors];
+}
+
 // ============================================================================
 // Layout Cloning
 // ============================================================================
@@ -91,6 +141,7 @@ export function cloneLayoutItem(layoutItem: LayoutItem): LayoutItem {
     maxH: layoutItem.maxH,
     moved: Boolean(layoutItem.moved),
     static: Boolean(layoutItem.static),
+    anchor: Boolean(layoutItem.anchor),
     isDraggable: layoutItem.isDraggable,
     isResizable: layoutItem.isResizable,
     resizeHandles: layoutItem.resizeHandles,
@@ -217,13 +268,19 @@ export function correctBounds(
       l.w = bounds.cols;
     }
 
-    if (!l.static) {
-      collidesWith.push(l);
-    } else {
+    if (l.static) {
       // Static items that collide with other statics must be moved down
       while (getFirstCollision(collidesWith, l)) {
         l.y++;
       }
+    } else if (l.anchor) {
+      // Anchor items that collide with statics or other anchors must be moved down
+      while (getFirstCollision(collidesWith, l)) {
+        l.y++;
+      }
+      collidesWith.push(l);
+    } else {
+      collidesWith.push(l);
     }
   }
 
@@ -324,7 +381,11 @@ export function moveElement(
     if (collision.moved) continue;
 
     // Static items can't be moved - move the dragged item instead
-    if (collision.static) {
+    // Anchor items stay fixed when a normal item collides - move the dragged item instead
+    if (
+      collision.static ||
+      (collision.anchor === true && l.anchor !== true)
+    ) {
       resultLayout = moveElementAwayFromCollision(
         resultLayout,
         collision,
@@ -372,7 +433,9 @@ export function moveElementAwayFromCollision(
 ): LayoutItem[] {
   const compactH = compactType === "horizontal";
   const compactV = compactType === "vertical";
-  const preventCollision = collidesWith.static;
+  const preventCollision =
+    collidesWith.static === true ||
+    (collidesWith.anchor === true && itemToMove.anchor !== true);
 
   // Try to move up/left first (only on primary collision from user action)
   if (isUserAction) {
@@ -409,13 +472,15 @@ export function moveElementAwayFromCollision(
       );
     }
 
-    // Handle specific collision cases
+    // Handle specific collision cases - place item directly below collidesWith
+    // instead of just +1 so anchor-anchor and similar swaps behave correctly
     if (collisionNorth && compactV) {
+      const newY = collidesWith.y + collidesWith.h;
       return moveElement(
         layout,
         itemToMove,
         undefined,
-        itemToMove.y + 1,
+        newY,
         isUserAction,
         preventCollision,
         compactType,
