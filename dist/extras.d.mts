@@ -166,16 +166,19 @@ declare const fastHorizontalOverlapCompactor: Compactor;
  *
  * A compaction algorithm that treats grid items like words in a paragraph.
  * Items flow left-to-right, wrapping to the next row when they reach
- * the grid edge.
+ * the grid edge — fully supporting variable item widths and heights.
  *
  * When dragging:
- * - Moving an item earlier in the sequence shifts other items down/right
- * - Moving an item later in the sequence shifts other items up/left
+ * - The dragged item's cursor position determines its insertion point
+ *   in the sequence (via center-point comparison against packed items)
+ * - Other items shift to accommodate the new position
+ * - The item only changes position when dragged past another item's center
  *
  * This creates a natural reordering behavior similar to drag-and-drop
  * in file managers or card layouts.
  *
- * Based on the algorithm from PR #1773 by John Thomson (@JohnThomson).
+ * Based on the algorithm from PR #1773 by John Thomson (@JohnThomson),
+ * extended with 2D occupancy tracking and center-based drag reordering.
  *
  * @example
  * ```tsx
@@ -190,14 +193,16 @@ declare const fastHorizontalOverlapCompactor: Compactor;
  */
 
 /**
- * Wrap compactor - arranges items like words in a paragraph.
+ * Wrap compactor — arranges items like words in a paragraph.
  *
  * Items flow left-to-right and wrap to the next row when they
- * reach the grid edge. Dragging an item reorders the sequence,
- * with other items shifting to maintain the flow.
+ * reach the grid edge. Supports items of any width and height;
+ * each item is placed at the earliest position where it fits
+ * without overlapping others.
  *
- * Works best with uniformly-sized items (especially 1x1), but
- * handles larger items by ensuring they fit within row bounds.
+ * During drag, uses center-point comparison for stable reorder
+ * thresholds — items swap when the dragged item's center crosses
+ * the midpoint of another item.
  */
 declare const wrapCompactor: Compactor;
 /**

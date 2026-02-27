@@ -1,4 +1,4 @@
-import { getStatics, collides, getFirstCollision, getFixedItems, bottom, sortLayoutItemsByRowCol, cloneLayoutItem, sortLayoutItemsByColRow, cloneLayout, correctBounds } from './chunk-ELGH2DIT.mjs';
+import { getStatics, collides, getFirstCollision, getFixedItems, bottom, sortLayoutItemsByRowCol, cloneLayoutItem, sortLayoutItemsByColRow, cloneLayout, correctBounds } from './chunk-S45A7HTH.mjs';
 
 // src/core/constraints.ts
 function clamp(value, min, max) {

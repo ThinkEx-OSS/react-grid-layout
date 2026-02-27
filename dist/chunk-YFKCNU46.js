@@ -327,6 +327,9 @@ function moveElement(layout, l, x, y, isUserAction, preventCollision, compactTyp
     l.moved = false;
     return layout;
   }
+  if (compactType === "wrap") {
+    return [...layout];
+  }
   let resultLayout = [...layout];
   for (let i = 0; i < collisions.length; i++) {
     const collision = collisions[i];

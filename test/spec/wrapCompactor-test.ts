@@ -118,6 +118,26 @@ describe("wrapCompactor", () => {
       expect(compacted[0]?.i).toBe("b");
       expect(compacted[1]?.i).toBe("a");
     });
+
+    it("preserves dragged item position when movedItemId is set (during drag)", () => {
+      // Simulate drag: 'b' was dragged to (2, 0), others should flow around it
+      const layout: Layout = [
+        { i: "a", x: 0, y: 0, w: 1, h: 1, static: false, moved: false },
+        { i: "b", x: 2, y: 0, w: 1, h: 1, static: false, moved: false },
+        { i: "c", x: 1, y: 0, w: 1, h: 1, static: false, moved: false }
+      ];
+
+      const compacted = wrapCompactor.compact(layout, 4, {
+        movedItemId: "b"
+      });
+
+      // 'b' should stay at (2, 0) - hitbox follows cursor
+      expect(compacted.find(l => l.i === "b")).toMatchObject({ x: 2, y: 0 });
+      // Others flow around it: a at (0,0), c at (1,0)
+      expect(compacted.find(l => l.i === "a")).toMatchObject({ x: 0, y: 0 });
+      expect(compacted.find(l => l.i === "c")).toMatchObject({ x: 1, y: 0 });
+    });
+
   });
 });
 

@@ -1,5 +1,5 @@
-import { verticalCompactor, sortBreakpoints, getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout } from './chunk-GSL4FT24.mjs';
-import { correctBounds, cloneLayout, getLayoutItem, cloneLayoutItem, moveElement, bottom } from './chunk-ELGH2DIT.mjs';
+import { verticalCompactor, sortBreakpoints, getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout } from './chunk-HZEN5E7K.mjs';
+import { correctBounds, cloneLayout, getLayoutItem, cloneLayoutItem, moveElement, bottom } from './chunk-S45A7HTH.mjs';
 import { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { deepEqual } from 'fast-equals';
 

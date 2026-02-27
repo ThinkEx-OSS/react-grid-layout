@@ -106,8 +106,7 @@ export function getFixedItems(
   const movedItem = context?.movedItemId
     ? getLayoutItem(layout, context.movedItemId)
     : undefined;
-  const anchorsFixed =
-    !context?.movedItemId || movedItem?.anchor !== true;
+  const anchorsFixed = !context?.movedItemId || movedItem?.anchor !== true;
 
   if (!anchorsFixed) {
     return statics;
@@ -371,6 +370,13 @@ export function moveElement(
     return layout as LayoutItem[];
   }
 
+  // Wrap mode: skip collision resolution — the wrap compactor does a full 2D repack
+  // that handles all positioning. Collision cascades here would corrupt the sort order
+  // that the compactor relies on, causing items to jump to wrong positions.
+  if (compactType === "wrap") {
+    return [...layout];
+  }
+
   // Resolve collisions by moving other items
   let resultLayout: LayoutItem[] = [...layout];
   for (let i = 0; i < collisions.length; i++) {
@@ -382,10 +388,7 @@ export function moveElement(
 
     // Static items can't be moved - move the dragged item instead
     // Anchor items stay fixed when a normal item collides - move the dragged item instead
-    if (
-      collision.static ||
-      (collision.anchor === true && l.anchor !== true)
-    ) {
+    if (collision.static || (collision.anchor === true && l.anchor !== true)) {
       resultLayout = moveElementAwayFromCollision(
         resultLayout,
         collision,

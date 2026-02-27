@@ -1,5 +1,5 @@
-import { defaultConstraints, setTransform, setTopLeft, perc, applyPositionConstraints, resizeItemInDirection, applySizeConstraints, defaultPositionStrategy, defaultGridConfig, defaultDragConfig, defaultResizeConfig, defaultDropConfig, getCompactor, getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, getIndentationValue } from './chunk-GSL4FT24.mjs';
-import { calcXYRaw, calcGridItemWHPx, clamp, calcGridColWidth, calcWHRaw, calcGridItemPosition, bottom, getLayoutItem, cloneLayoutItem, moveElement, withLayoutItem, getAllCollisions, calcXY, cloneLayout, correctBounds } from './chunk-ELGH2DIT.mjs';
+import { defaultConstraints, setTransform, setTopLeft, perc, applyPositionConstraints, resizeItemInDirection, applySizeConstraints, defaultPositionStrategy, defaultGridConfig, defaultDragConfig, defaultResizeConfig, defaultDropConfig, getCompactor, getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout, getIndentationValue } from './chunk-HZEN5E7K.mjs';
+import { calcXYRaw, calcGridItemWHPx, clamp, calcGridColWidth, calcWHRaw, calcGridItemPosition, bottom, getLayoutItem, cloneLayoutItem, moveElement, withLayoutItem, getAllCollisions, calcXY, cloneLayout, correctBounds } from './chunk-S45A7HTH.mjs';
 import React2, { useState, useRef, useMemo, useCallback, useEffect } from 'react';
 import { DraggableCore } from 'react-draggable';
 import { Resizable } from 'react-resizable';
@@ -772,13 +772,6 @@ function GridLayout(props) {
       const oldDragItem = oldDragItemRef.current;
       const l = getLayoutItem(currentLayout, i);
       if (!l) return;
-      const placeholder = {
-        w: l.w,
-        h: l.h,
-        x: l.x,
-        y: l.y,
-        i
-      };
       const newLayout = moveElement(
         currentLayout,
         l,
@@ -790,8 +783,17 @@ function GridLayout(props) {
         cols,
         allowOverlap
       );
-      onDragProp(newLayout, oldDragItem, l, placeholder, data.e, data.node);
-      setLayout(compactor.compact(newLayout, cols, { movedItemId: i }));
+      const compacted = compactor.compact(newLayout, cols, { movedItemId: i });
+      setLayout(compacted);
+      const placed = compacted.find((item) => item.i === i);
+      const placeholder = {
+        w: l.w,
+        h: l.h,
+        x: placed?.x ?? x,
+        y: placed?.y ?? y,
+        i
+      };
+      onDragProp(compacted, oldDragItem, l, placeholder, data.e, data.node);
       setActiveDrag(placeholder);
     },
     [preventCollision, compactType, cols, allowOverlap, compactor, onDragProp]

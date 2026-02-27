@@ -1,6 +1,6 @@
 'use strict';
 
-var chunkEFGCQCBB_js = require('./chunk-EFGCQCBB.js');
+var chunkYFKCNU46_js = require('./chunk-YFKCNU46.js');
 
 // src/core/constraints.ts
 function clamp(value, min, max) {
@@ -351,13 +351,13 @@ function resolveCompactionCollision(layout, item, moveToCoord, axis, hasStatics)
   const sizeProp = axis === "x" ? "w" : "h";
   item[axis] += 1;
   const itemIndex = layout.findIndex((l) => l.i === item.i);
-  const layoutHasStatics = hasStatics ?? chunkEFGCQCBB_js.getStatics(layout).length > 0;
+  const layoutHasStatics = hasStatics ?? chunkYFKCNU46_js.getStatics(layout).length > 0;
   for (let i = itemIndex + 1; i < layout.length; i++) {
     const otherItem = layout[i];
     if (otherItem === void 0) continue;
     if (otherItem.static) continue;
     if (!layoutHasStatics && otherItem.y > item.y + item.h) break;
-    if (chunkEFGCQCBB_js.collides(item, otherItem)) {
+    if (chunkYFKCNU46_js.collides(item, otherItem)) {
       resolveCompactionCollision(
         layout,
         otherItem,
@@ -373,11 +373,11 @@ function compactItemVertical(compareWith, l, fullLayout, maxY) {
   l.x = Math.max(l.x, 0);
   l.y = Math.max(l.y, 0);
   l.y = Math.min(maxY, l.y);
-  while (l.y > 0 && !chunkEFGCQCBB_js.getFirstCollision(compareWith, l)) {
+  while (l.y > 0 && !chunkYFKCNU46_js.getFirstCollision(compareWith, l)) {
     l.y--;
   }
   let collision;
-  while ((collision = chunkEFGCQCBB_js.getFirstCollision(compareWith, l)) !== void 0) {
+  while ((collision = chunkYFKCNU46_js.getFirstCollision(compareWith, l)) !== void 0) {
     resolveCompactionCollision(fullLayout, l, collision.y + collision.h, "y");
   }
   l.y = Math.max(l.y, 0);
@@ -386,16 +386,16 @@ function compactItemVertical(compareWith, l, fullLayout, maxY) {
 function compactItemHorizontal(compareWith, l, cols, fullLayout) {
   l.x = Math.max(l.x, 0);
   l.y = Math.max(l.y, 0);
-  while (l.x > 0 && !chunkEFGCQCBB_js.getFirstCollision(compareWith, l)) {
+  while (l.x > 0 && !chunkYFKCNU46_js.getFirstCollision(compareWith, l)) {
     l.x--;
   }
   let collision;
-  while ((collision = chunkEFGCQCBB_js.getFirstCollision(compareWith, l)) !== void 0) {
+  while ((collision = chunkYFKCNU46_js.getFirstCollision(compareWith, l)) !== void 0) {
     resolveCompactionCollision(fullLayout, l, collision.x + collision.w, "x");
     if (l.x + l.w > cols) {
       l.x = cols - l.w;
       l.y++;
-      while (l.x > 0 && !chunkEFGCQCBB_js.getFirstCollision(compareWith, l)) {
+      while (l.x > 0 && !chunkYFKCNU46_js.getFirstCollision(compareWith, l)) {
         l.x--;
       }
     }
@@ -407,16 +407,16 @@ var verticalCompactor = {
   type: "vertical",
   allowOverlap: false,
   compact(layout, _cols, context) {
-    const fixedItems = chunkEFGCQCBB_js.getFixedItems(layout, context);
+    const fixedItems = chunkYFKCNU46_js.getFixedItems(layout, context);
     const compareWith = [...fixedItems];
-    let maxY = chunkEFGCQCBB_js.bottom(compareWith);
-    const sorted = chunkEFGCQCBB_js.sortLayoutItemsByRowCol(layout);
+    let maxY = chunkYFKCNU46_js.bottom(compareWith);
+    const sorted = chunkYFKCNU46_js.sortLayoutItemsByRowCol(layout);
     const out = new Array(layout.length);
     const fixedIds = new Set(fixedItems.map((f) => f.i));
     for (let i = 0; i < sorted.length; i++) {
       const sortedItem = sorted[i];
       if (sortedItem === void 0) continue;
-      let l = chunkEFGCQCBB_js.cloneLayoutItem(sortedItem);
+      let l = chunkYFKCNU46_js.cloneLayoutItem(sortedItem);
       if (!fixedIds.has(l.i)) {
         l = compactItemVertical(compareWith, l, sorted, maxY);
         maxY = Math.max(maxY, l.y + l.h);
@@ -433,15 +433,15 @@ var horizontalCompactor = {
   type: "horizontal",
   allowOverlap: false,
   compact(layout, cols, context) {
-    const fixedItems = chunkEFGCQCBB_js.getFixedItems(layout, context);
+    const fixedItems = chunkYFKCNU46_js.getFixedItems(layout, context);
     const compareWith = [...fixedItems];
-    const sorted = chunkEFGCQCBB_js.sortLayoutItemsByColRow(layout);
+    const sorted = chunkYFKCNU46_js.sortLayoutItemsByColRow(layout);
     const out = new Array(layout.length);
     const fixedIds = new Set(fixedItems.map((f) => f.i));
     for (let i = 0; i < sorted.length; i++) {
       const sortedItem = sorted[i];
       if (sortedItem === void 0) continue;
-      let l = chunkEFGCQCBB_js.cloneLayoutItem(sortedItem);
+      let l = chunkYFKCNU46_js.cloneLayoutItem(sortedItem);
       if (!fixedIds.has(l.i)) {
         l = compactItemHorizontal(compareWith, l, cols, sorted);
         compareWith.push(l);
@@ -457,21 +457,21 @@ var noCompactor = {
   type: null,
   allowOverlap: false,
   compact(layout, _cols, _context) {
-    return chunkEFGCQCBB_js.cloneLayout(layout);
+    return chunkYFKCNU46_js.cloneLayout(layout);
   }
 };
 var verticalOverlapCompactor = {
   ...verticalCompactor,
   allowOverlap: true,
   compact(layout, _cols, _context) {
-    return chunkEFGCQCBB_js.cloneLayout(layout);
+    return chunkYFKCNU46_js.cloneLayout(layout);
   }
 };
 var horizontalOverlapCompactor = {
   ...horizontalCompactor,
   allowOverlap: true,
   compact(layout, _cols, _context) {
-    return chunkEFGCQCBB_js.cloneLayout(layout);
+    return chunkYFKCNU46_js.cloneLayout(layout);
   }
 };
 var noOverlapCompactor = {
@@ -529,7 +529,7 @@ function getColsFromBreakpoint(breakpoint, cols) {
 function findOrGenerateResponsiveLayout(layouts, breakpoints, breakpoint, lastBreakpoint, cols, compactTypeOrCompactor) {
   const existingLayout = layouts[breakpoint];
   if (existingLayout) {
-    return chunkEFGCQCBB_js.cloneLayout(existingLayout);
+    return chunkYFKCNU46_js.cloneLayout(existingLayout);
   }
   let layout = layouts[lastBreakpoint];
   const breakpointsSorted = sortBreakpoints(breakpoints);
@@ -545,8 +545,8 @@ function findOrGenerateResponsiveLayout(layouts, breakpoints, breakpoint, lastBr
       break;
     }
   }
-  const clonedLayout = chunkEFGCQCBB_js.cloneLayout(layout || []);
-  const corrected = chunkEFGCQCBB_js.correctBounds(clonedLayout, { cols });
+  const clonedLayout = chunkYFKCNU46_js.cloneLayout(layout || []);
+  const corrected = chunkYFKCNU46_js.correctBounds(clonedLayout, { cols });
   const compactor = typeof compactTypeOrCompactor === "object" && compactTypeOrCompactor !== null ? compactTypeOrCompactor : getCompactor(compactTypeOrCompactor);
   return compactor.compact(corrected, cols);
 }

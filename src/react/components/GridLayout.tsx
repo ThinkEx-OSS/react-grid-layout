@@ -532,14 +532,6 @@ export function GridLayout(props: GridLayoutProps): ReactElement {
       const l = getLayoutItem(currentLayout, i);
       if (!l) return;
 
-      const placeholder: LayoutItem = {
-        w: l.w,
-        h: l.h,
-        x: l.x,
-        y: l.y,
-        i
-      };
-
       // Move the element
       const newLayout = moveElement(
         currentLayout,
@@ -553,10 +545,21 @@ export function GridLayout(props: GridLayoutProps): ReactElement {
         allowOverlap
       );
 
-      onDragProp(newLayout, oldDragItem, l, placeholder, data.e, data.node);
+      // Compact layout — compactor determines all positions (including the
+      // dragged item's flow position for wrap mode)
+      const compacted = compactor.compact(newLayout, cols, { movedItemId: i });
+      setLayout(compacted);
 
-      // Use compactor.compact() - it handles allowOverlap internally (#2213)
-      setLayout(compactor.compact(newLayout, cols, { movedItemId: i }));
+      // Placeholder shows where the item will land after release
+      const placed = compacted.find(item => item.i === i);
+      const placeholder: LayoutItem = {
+        w: l.w,
+        h: l.h,
+        x: placed?.x ?? x,
+        y: placed?.y ?? y,
+        i
+      };
+      onDragProp(compacted, oldDragItem, l, placeholder, data.e, data.node);
       setActiveDrag(placeholder);
     },
     [preventCollision, compactType, cols, allowOverlap, compactor, onDragProp]

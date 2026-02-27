@@ -1,6 +1,6 @@
 'use strict';
 
-var chunkEFGCQCBB_js = require('./chunk-EFGCQCBB.js');
+var chunkYFKCNU46_js = require('./chunk-YFKCNU46.js');
 var react = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 
@@ -18,7 +18,7 @@ function GridBackground({
   style
 }) {
   const dims = react.useMemo(
-    () => chunkEFGCQCBB_js.calcGridCellDimensions({
+    () => chunkYFKCNU46_js.calcGridCellDimensions({
       width,
       cols,
       rowHeight,
@@ -156,7 +156,7 @@ var fastVerticalCompactor = {
   type: "vertical",
   allowOverlap: false,
   compact(layout, cols, context) {
-    const fixedItems = chunkEFGCQCBB_js.getFixedItems(layout, context);
+    const fixedItems = chunkYFKCNU46_js.getFixedItems(layout, context);
     const fixedIds = new Set(fixedItems.map((f) => f.i));
     const sorted = [...layout].sort((a, b) => {
       if (a.y < b.y) return -1;
@@ -166,7 +166,7 @@ var fastVerticalCompactor = {
       return 0;
     });
     const fixedItemsInOrder = sorted.filter((l) => fixedIds.has(l.i));
-    const out = chunkEFGCQCBB_js.cloneLayout(layout);
+    const out = chunkYFKCNU46_js.cloneLayout(layout);
     compactVerticalFast(out, cols, false, fixedItemsInOrder);
     return out;
   }
@@ -175,7 +175,7 @@ var fastVerticalOverlapCompactor = {
   ...fastVerticalCompactor,
   allowOverlap: true,
   compact(layout, cols, context) {
-    const fixedItems = chunkEFGCQCBB_js.getFixedItems(layout, context);
+    const fixedItems = chunkYFKCNU46_js.getFixedItems(layout, context);
     const fixedIds = new Set(fixedItems.map((f) => f.i));
     const sorted = [...layout].sort((a, b) => {
       if (a.y < b.y) return -1;
@@ -185,7 +185,7 @@ var fastVerticalOverlapCompactor = {
       return 0;
     });
     const fixedItemsInOrder = sorted.filter((l) => fixedIds.has(l.i));
-    const out = chunkEFGCQCBB_js.cloneLayout(layout);
+    const out = chunkYFKCNU46_js.cloneLayout(layout);
     compactVerticalFast(out, cols, true, fixedItemsInOrder);
     return out;
   }
@@ -317,8 +317,8 @@ var fastHorizontalCompactor = {
   type: "horizontal",
   allowOverlap: false,
   compact(layout, cols, context) {
-    const fixedItems = chunkEFGCQCBB_js.getFixedItems(layout, context);
-    const out = chunkEFGCQCBB_js.cloneLayout(layout);
+    const fixedItems = chunkYFKCNU46_js.getFixedItems(layout, context);
+    const out = chunkYFKCNU46_js.cloneLayout(layout);
     compactHorizontalFast(out, cols, false, fixedItems);
     return out;
   }
@@ -327,83 +327,157 @@ var fastHorizontalOverlapCompactor = {
   ...fastHorizontalCompactor,
   allowOverlap: true,
   compact(layout, cols, context) {
-    const fixedItems = chunkEFGCQCBB_js.getFixedItems(layout, context);
-    const out = chunkEFGCQCBB_js.cloneLayout(layout);
+    const fixedItems = chunkYFKCNU46_js.getFixedItems(layout, context);
+    const out = chunkYFKCNU46_js.cloneLayout(layout);
     compactHorizontalFast(out, cols, true, fixedItems);
     return out;
   }
 };
 
 // src/extras/wrapCompactor.ts
+function compareSortOrder(a, b) {
+  if (a.y !== b.y) return a.y - b.y;
+  return a.x - b.x;
+}
 function sortByWrapOrder(layout) {
-  return [...layout].sort((a, b) => {
-    if (a.y !== b.y) return a.y - b.y;
-    return a.x - b.x;
-  });
+  return [...layout].sort(compareSortOrder);
 }
-function fromWrapPosition(pos, cols) {
-  return {
-    x: pos % cols,
-    y: Math.floor(pos / cols)
-  };
-}
-function compactWrap(layout, cols, fixedItems) {
-  if (layout.length === 0) return [];
-  const sorted = sortByWrapOrder(layout);
-  const out = new Array(layout.length);
-  const fixedIds = new Set(fixedItems.map((f) => f.i));
-  const fixedPositions = /* @__PURE__ */ new Set();
-  for (const s of fixedItems) {
-    for (let dy = 0; dy < s.h; dy++) {
-      for (let dx = 0; dx < s.w; dx++) {
-        fixedPositions.add((s.y + dy) * cols + (s.x + dx));
+var OccupancyGrid = class {
+  constructor(cols) {
+    this.cols = cols;
+    this.rows = [];
+  }
+  ensureRow(row) {
+    while (this.rows.length <= row) {
+      this.rows.push(new Array(this.cols).fill(false));
+    }
+  }
+  isOccupied(x, y) {
+    if (x < 0 || x >= this.cols || y < 0) return true;
+    this.ensureRow(y);
+    return this.rows[y][x];
+  }
+  occupy(x, y, w, h) {
+    for (let dy = 0; dy < h; dy++) {
+      this.ensureRow(y + dy);
+      for (let dx = 0; dx < w; dx++) {
+        this.rows[y + dy][x + dx] = true;
       }
     }
   }
-  let nextPos = 0;
-  for (let i = 0; i < sorted.length; i++) {
-    const sortedItem = sorted[i];
-    if (sortedItem === void 0) continue;
-    const l = chunkEFGCQCBB_js.cloneLayoutItem(sortedItem);
-    if (fixedIds.has(l.i)) {
-      const originalIndex2 = layout.indexOf(sortedItem);
-      out[originalIndex2] = l;
-      l.moved = false;
-      continue;
-    }
-    while (fixedPositions.has(nextPos)) {
-      nextPos++;
-    }
-    const { x, y } = fromWrapPosition(nextPos, cols);
-    if (x + l.w > cols) {
-      nextPos = (y + 1) * cols;
-      while (fixedPositions.has(nextPos)) {
-        nextPos++;
+  canPlace(x, y, w, h) {
+    if (x + w > this.cols) return false;
+    for (let dy = 0; dy < h; dy++) {
+      for (let dx = 0; dx < w; dx++) {
+        if (this.isOccupied(x + dx, y + dy)) return false;
       }
     }
-    const newCoords = fromWrapPosition(nextPos, cols);
-    l.x = newCoords.x;
-    l.y = newCoords.y;
-    nextPos += l.w;
-    const originalIndex = layout.indexOf(sortedItem);
-    out[originalIndex] = l;
+    return true;
+  }
+};
+function findFirstFit(grid, w, h, cols) {
+  for (let row = 0; ; row++) {
+    for (let col = 0; col <= cols - w; col++) {
+      if (grid.canPlace(col, row, w, h)) {
+        return { x: col, y: row };
+      }
+    }
+  }
+}
+function placeSequence(sequence, layout, grid, cols, out) {
+  for (const seqItem of sequence) {
+    const l = chunkYFKCNU46_js.cloneLayoutItem(seqItem);
+    const w = Math.min(l.w, cols);
+    const h = l.h;
+    const pos = findFirstFit(grid, w, h, cols);
+    l.x = pos.x;
+    l.y = pos.y;
+    l.w = w;
     l.moved = false;
+    grid.occupy(pos.x, pos.y, w, h);
+    const originalIndex = layout.indexOf(seqItem);
+    out[originalIndex] = l;
   }
+}
+function findInsertionIndex(sortedMovable, movedItem, fixedItems, cols) {
+  const tempGrid = new OccupancyGrid(cols);
+  for (const s of fixedItems) {
+    tempGrid.occupy(s.x, s.y, s.w, s.h);
+  }
+  const placed = [];
+  for (const item of sortedMovable) {
+    const w = Math.min(item.w, cols);
+    const h = item.h;
+    const pos = findFirstFit(tempGrid, w, h, cols);
+    tempGrid.occupy(pos.x, pos.y, w, h);
+    placed.push({ w, h, px: pos.x, py: pos.y });
+  }
+  const mcx = movedItem.x + 0.5;
+  const mcy = movedItem.y + 0.5;
+  for (let i = 0; i < placed.length; i++) {
+    const p = placed[i];
+    const pcx = p.px + p.w / 2;
+    const pcy = p.py + p.h / 2;
+    const sameRow = movedItem.y < p.py + p.h && p.py < movedItem.y + movedItem.h;
+    if (sameRow) {
+      if (mcx <= pcx) return i;
+    } else if (mcy < pcy) {
+      return i;
+    }
+  }
+  return placed.length;
+}
+function compactWrap(layout, cols, fixedItems, movedItemId) {
+  if (layout.length === 0) return [];
+  const fixedIds = new Set(fixedItems.map((f) => f.i));
+  const movedItem = movedItemId ? layout.find((item) => item.i === movedItemId && !fixedIds.has(item.i)) : void 0;
+  const movableItems = layout.filter(
+    (item) => !fixedIds.has(item.i) && item !== movedItem
+  );
+  const sortedMovable = sortByWrapOrder(movableItems);
+  let sequence;
+  if (movedItem) {
+    const insertIdx = findInsertionIndex(
+      sortedMovable,
+      movedItem,
+      fixedItems,
+      cols
+    );
+    sequence = [
+      ...sortedMovable.slice(0, insertIdx),
+      movedItem,
+      ...sortedMovable.slice(insertIdx)
+    ];
+  } else {
+    sequence = sortByWrapOrder(
+      layout.filter((item) => !fixedIds.has(item.i))
+    );
+  }
+  const grid = new OccupancyGrid(cols);
+  const out = new Array(layout.length);
+  for (const s of fixedItems) {
+    grid.occupy(s.x, s.y, s.w, s.h);
+    const originalIndex = layout.indexOf(s);
+    const cloned = chunkYFKCNU46_js.cloneLayoutItem(s);
+    cloned.moved = false;
+    out[originalIndex] = cloned;
+  }
+  placeSequence(sequence, layout, grid, cols, out);
   return out;
 }
 var wrapCompactor = {
   type: "wrap",
   allowOverlap: false,
   compact(layout, cols, context) {
-    const fixedItems = chunkEFGCQCBB_js.getFixedItems(layout, context);
-    return compactWrap(layout, cols, fixedItems);
+    const fixedItems = chunkYFKCNU46_js.getFixedItems(layout, context);
+    return compactWrap(layout, cols, fixedItems, context?.movedItemId);
   }
 };
 var wrapOverlapCompactor = {
   ...wrapCompactor,
   allowOverlap: true,
   compact(layout, _cols, _context) {
-    return chunkEFGCQCBB_js.cloneLayout(layout);
+    return chunkYFKCNU46_js.cloneLayout(layout);
   }
 };
 
