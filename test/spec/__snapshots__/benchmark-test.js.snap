@@ -2019,7 +2019,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 3,
-    "y": 10,
+    "y": 9,
   },
   {
     "anchor": false,
@@ -2171,7 +2171,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 2,
     "x": 0,
-    "y": 12,
+    "y": 11,
   },
   {
     "anchor": false,
@@ -2209,7 +2209,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 1,
     "x": 0,
-    "y": 19,
+    "y": 17,
   },
   {
     "anchor": false,
@@ -2247,7 +2247,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 3,
-    "y": 8,
+    "y": 7,
   },
   {
     "anchor": false,
@@ -2703,7 +2703,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 2,
-    "y": 12,
+    "y": 11,
   },
   {
     "anchor": false,
@@ -2741,7 +2741,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 2,
     "x": 1,
-    "y": 19,
+    "y": 17,
   },
   {
     "anchor": false,
@@ -2874,7 +2874,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 0,
-    "y": 14,
+    "y": 13,
   },
   {
     "anchor": false,
@@ -2931,7 +2931,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 0,
-    "y": 10,
+    "y": 9,
   },
   {
     "anchor": false,
@@ -2969,7 +2969,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 2,
     "x": 0,
-    "y": 25,
+    "y": 23,
   },
   {
     "anchor": false,
@@ -3102,7 +3102,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 0,
-    "y": 17,
+    "y": 16,
   },
   {
     "anchor": false,
@@ -3159,7 +3159,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 0,
-    "y": 8,
+    "y": 7,
   },
   {
     "anchor": false,
@@ -3197,7 +3197,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 2,
     "x": 0,
-    "y": 23,
+    "y": 21,
   },
   {
     "anchor": false,
@@ -3330,7 +3330,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 0,
-    "y": 16,
+    "y": 15,
   },
   {
     "anchor": false,
@@ -3406,7 +3406,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 1,
     "x": 3,
-    "y": 14,
+    "y": 13,
   },
   {
     "anchor": false,
@@ -3425,7 +3425,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 2,
     "x": 0,
-    "y": 21,
+    "y": 19,
   },
   {
     "anchor": false,
@@ -3558,7 +3558,7 @@ exports[`Benchmark Snapshot compaction output is deterministic (horizontal, 100 
     "static": false,
     "w": 3,
     "x": 0,
-    "y": 15,
+    "y": 14,
   },
   {
     "anchor": false,
